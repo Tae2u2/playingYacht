@@ -109,10 +109,10 @@ export const useKeyboardControls = (): KeyboardControls => {
  * 요트의 이동 속도 및 회전 속도 설정
  */
 export const YACHT_CONTROLS = {
-  moveSpeed: 0.2, // 전진/후진 속도
+  moveSpeed: 0.1, // 전진/후진 속도
   rotationSpeed: 0.03, // 회전 속도 (라디안)
   verticalSpeed: 0.1, // 상승/하강 속도
-  maxSpeed: 1.0, // 최대 속도
+  maxSpeed: 0.3, // 최대 속도
   acceleration: 0.05, // 가속도
   friction: 0.95, // 마찰력 (0-1, 1에 가까울수록 마찰이 적음)
 };

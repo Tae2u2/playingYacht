@@ -1,10 +1,17 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, forwardRef } from "react";
 import { Clone, useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { useKeyboardControls, YACHT_CONTROLS } from "../controls/controls";
 
-export const ControllableYacht = ({ url }: { url: string }) => {
+interface ControllableYachtProps {
+  url: string;
+}
+
+export const ControllableYacht = forwardRef<
+  THREE.Group,
+  ControllableYachtProps
+>(({ url }, ref) => {
   const { scene } = useGLTF(url);
   const yachtRef = useRef<THREE.Group>(null!);
   const velocityRef = useRef(new THREE.Vector3(0, 0, 0));
@@ -12,9 +19,15 @@ export const ControllableYacht = ({ url }: { url: string }) => {
 
   useEffect(() => {
     if (yachtRef.current) {
-      yachtRef.current.rotation.y = 0;
+      yachtRef.current.position.y = 8; // 초기 y축 위치 설정
+      // ref 전달
+      if (typeof ref === "function") {
+        ref(yachtRef.current);
+      } else if (ref) {
+        ref.current = yachtRef.current;
+      }
     }
-  }, []);
+  }, [ref]);
 
   useFrame((state, delta) => {
     if (!yachtRef.current) return;
@@ -23,10 +36,10 @@ export const ControllableYacht = ({ url }: { url: string }) => {
     const velocity = velocityRef.current;
 
     if (controls.left) {
-      yacht.rotation.y += YACHT_CONTROLS.rotationSpeed;
+      yacht.rotation.y -= YACHT_CONTROLS.rotationSpeed;
     }
     if (controls.right) {
-      yacht.rotation.y -= YACHT_CONTROLS.rotationSpeed;
+      yacht.rotation.y += YACHT_CONTROLS.rotationSpeed;
     }
 
     const direction = new THREE.Vector3(0, 0, -1);
@@ -71,4 +84,6 @@ export const ControllableYacht = ({ url }: { url: string }) => {
       <Clone object={scene} scale={0.5} />
     </group>
   );
-};
+});
+
+ControllableYacht.displayName = "ControllableYacht";

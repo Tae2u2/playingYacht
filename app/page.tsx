@@ -1,5 +1,9 @@
-import Image from "next/image";
+import { YachtScene } from "@/components/YachtScene";
 
 export default function Home() {
-  return <main>Hello Three</main>;
+  return (
+    <main>
+      <YachtScene />
+    </main>
+  );
 }

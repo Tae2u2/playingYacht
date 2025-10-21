@@ -1,15 +1,19 @@
 "use client";
 
-import { Suspense, useState } from "react";
+import { Suspense, useState, useRef } from "react";
 import { Canvas } from "@react-three/fiber";
-import { Environment, OrbitControls, Sky } from "@react-three/drei";
+import { Environment, Sky } from "@react-three/drei";
 import { ControllableYacht } from "./ControllableYacht";
 import { ControlsUI } from "./ControlsUI";
+import { CameraRig } from "./CameraRig";
+import * as THREE from "three";
+import Ocean from "./Ocean";
 
 const YACHT_MODEL_URL = "/yacht_light.glb";
 
 export const YachtScene = () => {
   const [canvasKey] = useState(0);
+  const yachtRef = useRef<THREE.Group>(null);
 
   return (
     <div className="w-full h-screen">
@@ -31,15 +35,13 @@ export const YachtScene = () => {
         />
 
         <Suspense fallback={null}>
-          <ControllableYacht url={YACHT_MODEL_URL} />
+          <ControllableYacht ref={yachtRef} url={YACHT_MODEL_URL} />
         </Suspense>
 
-        <OrbitControls
-          enablePan={true}
-          enableZoom={true}
-          enableRotate={true}
-          minDistance={5}
-          maxDistance={100}
+        <Ocean />
+        <CameraRig
+          targetRef={yachtRef}
+          offset={new THREE.Vector3(0, 8, -20)}
         />
       </Canvas>
     </div>

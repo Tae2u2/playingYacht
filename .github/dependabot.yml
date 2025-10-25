@@ -1,0 +1,51 @@
+version: 2
+updates:
+  # npm 의존성 업데이트 활성화
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "Asia/Seoul"
+    open-pull-requests-limit: 10
+    labels:
+      - "dependencies"
+      - "npm"
+    commit-message:
+      prefix: "chore"
+      prefix-development: "chore"
+      include: "scope"
+    # 주요 의존성만 그룹화
+    groups:
+      react:
+        patterns:
+          - "react*"
+          - "@types/react*"
+      next:
+        patterns:
+          - "next*"
+      three:
+        patterns:
+          - "three*"
+          - "@react-three/*"
+          - "@types/three*"
+      tailwind:
+        patterns:
+          - "tailwind*"
+          - "postcss*"
+          - "autoprefixer*"
+
+  # GitHub Actions 업데이트 활성화
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "Asia/Seoul"
+    labels:
+      - "dependencies"
+      - "github-actions"
+    commit-message:
+      prefix: "ci"

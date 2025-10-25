@@ -5,9 +5,10 @@ Next.js 14와 React Three Fiber를 활용한 인터랙티브 3D 요트 시뮬레
 <div align="center">
 
   <!-- GitHub Actions 배지 -->
-  ![CI](https://github.com/YOUR_USERNAME/YOUR_REPO_NAME/workflows/CI/badge.svg)
-  ![Deploy](https://github.com/YOUR_USERNAME/YOUR_REPO_NAME/workflows/Deploy%20to%20Production/badge.svg)
-  ![CodeQL](https://github.com/YOUR_USERNAME/YOUR_REPO_NAME/workflows/CodeQL%20Security%20Analysis/badge.svg)
+
+![CI](https://github.com/Tae2u2/playingYacht/workflows/CI/badge.svg)
+![Deploy to GitHub Pages](https://github.com/Tae2u2/playingYacht/workflows/Deploy%20to%20GitHub%20Pages/badge.svg)
+![CodeQL](https://github.com/Tae2u2/playingYacht/workflows/CodeQL%20Security%20Analysis/badge.svg)
 
   <!-- 기술 스택 배지 -->
   <img src="https://img.shields.io/badge/Next.js-14.0.3-black?style=for-the-badge&logo=next.js" />
@@ -17,8 +18,9 @@ Next.js 14와 React Three Fiber를 활용한 인터랙티브 3D 요트 시뮬레
   <img src="https://img.shields.io/badge/Tailwind_CSS-3.3-06B6D4?style=for-the-badge&logo=tailwindcss" />
 
   <!-- 추가 정보 배지 -->
-  ![License](https://img.shields.io/badge/License-Private-red?style=for-the-badge)
-  ![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=for-the-badge)
+
+![License](https://img.shields.io/badge/License-Private-red?style=for-the-badge)
+![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=for-the-badge)
 
 </div>
 
@@ -86,20 +88,20 @@ Next.js 14와 React Three Fiber를 활용한 인터랙티브 3D 요트 시뮬레
 
 ### Core Technologies
 
-| 기술 | 용도 |
-|------|------|
-| **Next.js 14** | React 프레임워크 (App Router) |
-| **React 18** | UI 컴포넌트 라이브러리 |
-| **TypeScript** | 타입 안정성 |
-| **Tailwind CSS** | 유틸리티 기반 스타일링 |
+| 기술             | 용도                          |
+| ---------------- | ----------------------------- |
+| **Next.js 14**   | React 프레임워크 (App Router) |
+| **React 18**     | UI 컴포넌트 라이브러리        |
+| **TypeScript**   | 타입 안정성                   |
+| **Tailwind CSS** | 유틸리티 기반 스타일링        |
 
 ### 3D Graphics
 
-| 라이브러리 | 용도 |
-|-----------|------|
-| **Three.js** | 3D 그래픽 코어 엔진 |
-| **React Three Fiber** | Three.js React 렌더러 |
-| **React Three Drei** | Three.js 고수준 컴포넌트 (Sky, Environment 등) |
+| 라이브러리            | 용도                                           |
+| --------------------- | ---------------------------------------------- |
+| **Three.js**          | 3D 그래픽 코어 엔진                            |
+| **React Three Fiber** | Three.js React 렌더러                          |
+| **React Three Drei**  | Three.js 고수준 컴포넌트 (Sky, Environment 등) |
 
 ### Development Tools
 
@@ -141,17 +143,17 @@ npm run lint
 
 ### 이동 컨트롤
 
-| 키 | 동작 |
-|---|------|
-| **↑ (ArrowUp)** | 전진 |
-| **↓ (ArrowDown)** | 후진 |
-| **← (ArrowLeft)** | 좌회전 |
+| 키                 | 동작   |
+| ------------------ | ------ |
+| **↑ (ArrowUp)**    | 전진   |
+| **↓ (ArrowDown)**  | 후진   |
+| **← (ArrowLeft)**  | 좌회전 |
 | **→ (ArrowRight)** | 우회전 |
 
 ### 고도 컨트롤
 
-| 키 | 동작 |
-|---|------|
+| 키    | 동작 |
+| ----- | ---- |
 | **W** | 상승 |
 | **S** | 하강 |
 
@@ -211,6 +213,7 @@ three/
 메인 3D 씬을 관리하는 최상위 컴포넌트입니다.
 
 **주요 기능:**
+
 - Canvas 설정 및 카메라 구성
 - 조명 시스템 (Ambient + Directional)
 - 환경 설정 (Sky, Environment)
@@ -221,6 +224,7 @@ three/
 키보드 입력으로 제어 가능한 요트 컴포넌트입니다.
 
 **물리 시뮬레이션:**
+
 - 회전 제어 (좌우 방향키)
 - 가속/감속 (상하 방향키)
 - 상승/하강 (W/S 키)
@@ -228,14 +232,15 @@ three/
 - 속도 기반 흔들림 효과
 
 **코드 참조:**
+
 ```typescript
 // controls/controls.ts
 export const YACHT_CONTROLS = {
-  rotationSpeed: 0.02,      // 회전 속도
-  acceleration: 0.001,      // 가속도
-  maxSpeed: 0.3,           // 최대 속도
-  friction: 0.98,          // 마찰력
-  verticalSpeed: 2.0,      // 상승/하강 속도
+  rotationSpeed: 0.02, // 회전 속도
+  acceleration: 0.001, // 가속도
+  maxSpeed: 0.3, // 최대 속도
+  friction: 0.98, // 마찰력
+  verticalSpeed: 2.0, // 상승/하강 속도
 };
 ```
 
@@ -244,6 +249,7 @@ export const YACHT_CONTROLS = {
 요트를 부드럽게 추적하는 3인칭 카메라 시스템입니다.
 
 **동작 원리:**
+
 1. 요트의 회전을 고려한 오프셋 계산
 2. 목표 카메라 위치 계산
 3. Lerp를 사용한 부드러운 이동
@@ -269,11 +275,11 @@ smoothness={0.05}                       // 부드러움 정도
 
 ```typescript
 export const YACHT_CONTROLS = {
-  rotationSpeed: 0.02,    // 회전 속도 (더 크면 빠르게 회전)
-  acceleration: 0.001,    // 가속도 (더 크면 빠르게 가속)
-  maxSpeed: 0.3,         // 최대 속도 제한
-  friction: 0.98,        // 마찰력 (1에 가까울수록 관성이 큼)
-  verticalSpeed: 2.0,    // 상승/하강 속도
+  rotationSpeed: 0.02, // 회전 속도 (더 크면 빠르게 회전)
+  acceleration: 0.001, // 가속도 (더 크면 빠르게 가속)
+  maxSpeed: 0.3, // 최대 속도 제한
+  friction: 0.98, // 마찰력 (1에 가까울수록 관성이 큼)
+  verticalSpeed: 2.0, // 상승/하강 속도
 };
 ```
 
@@ -284,12 +290,13 @@ export const YACHT_CONTROLS = {
 ```typescript
 <CameraRig
   targetRef={yachtRef}
-  offset={new THREE.Vector3(0, 8, -20)}  // [x, y, z]
+  offset={new THREE.Vector3(0, 8, -20)} // [x, y, z]
   smoothness={0.05}
 />
 ```
 
 **오프셋 예시:**
+
 - **더 멀리 보기**: `z: -30`
 - **더 가까이 보기**: `z: -15`
 - **더 높은 시점**: `y: 10`
@@ -302,8 +309,8 @@ export const YACHT_CONTROLS = {
 ```typescript
 useEffect(() => {
   if (yachtRef.current) {
-    yachtRef.current.rotation.y = Math.PI;  // 180도 회전
-    yachtRef.current.position.y = 2;        // 높이 설정
+    yachtRef.current.rotation.y = Math.PI; // 180도 회전
+    yachtRef.current.position.y = 2; // 높이 설정
   }
 }, [ref]);
 ```
@@ -364,6 +371,7 @@ useEffect(() => {
 ### GitHub Actions 워크플로우
 
 #### 1. CI (Continuous Integration)
+
 **파일**: `.github/workflows/ci.yml`
 
 - **트리거**: `master`, `main`, `develop` 브랜치에 push 또는 PR 생성 시
@@ -380,22 +388,34 @@ GitHub Repository → Actions → CI
 ```
 
 #### 2. Deploy (배포)
+
 **파일**: `.github/workflows/deploy.yml`
 
-- **트리거**: `master` 또는 `main` 브랜치에 push 시
+- **트리거**: `master` 또는 `main` 브랜치에 push 시, 또는 수동 실행
 - **실행 작업**:
   - 린트 및 빌드
-  - Vercel 자동 배포 (설정 시)
-  - GitHub Pages 배포 옵션 제공
+  - Next.js Static Export 생성
+  - GitHub Pages 자동 배포
 
-**Vercel 배포 설정 방법**:
-1. GitHub Repository → Settings → Secrets and variables → Actions
-2. 다음 시크릿 추가:
-   - `VERCEL_TOKEN`: Vercel 계정 토큰
-   - `VERCEL_ORG_ID`: Vercel 조직 ID
-   - `VERCEL_PROJECT_ID`: Vercel 프로젝트 ID
+**GitHub Pages 활성화 방법**:
+
+1. GitHub Repository → **Settings** → **Pages**
+2. **Source**: GitHub Actions 선택
+3. 코드를 푸시하면 자동으로 배포됩니다
+4. 배포 URL: `https://YOUR_USERNAME.github.io/YOUR_REPO_NAME/`
+
+**basePath 설정**:
+
+- `next.config.js`에 이미 설정되어 있습니다:
+
+```javascript
+basePath: '/playingYacht',
+```
+
+- 배포 URL: `https://YOUR_USERNAME.github.io/playingYacht/`
 
 #### 3. CodeQL (보안 분석)
+
 **파일**: `.github/workflows/codeql.yml`
 
 - **트리거**:
@@ -406,6 +426,7 @@ GitHub Repository → Actions → CI
   - 보안 경고 자동 생성
 
 #### 4. Dependabot (의존성 관리)
+
 **파일**: `.github/dependabot.yml`
 
 - **자동 업데이트**:
@@ -416,6 +437,7 @@ GitHub Repository → Actions → CI
 ### Pull Request 템플릿
 
 PR 생성 시 자동으로 제공되는 템플릿 (`.github/PULL_REQUEST_TEMPLATE.md`):
+
 - 변경 사항 요약
 - 변경 유형 체크리스트
 - 테스트 방법
@@ -425,6 +447,7 @@ PR 생성 시 자동으로 제공되는 템플릿 (`.github/PULL_REQUEST_TEMPLAT
 ### 워크플로우 배지
 
 위 배지들은 각 워크플로우의 상태를 실시간으로 표시합니다:
+
 - ✅ **통과**: 모든 검사 성공
 - ❌ **실패**: 일부 검사 실패
 - 🟡 **진행 중**: 워크플로우 실행 중

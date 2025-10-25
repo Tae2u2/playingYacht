@@ -13,6 +13,7 @@ import { IslandUI } from "./IslandUI";
 import * as THREE from "three";
 import Ocean from "./Ocean";
 import { checkIslandCollision } from "../utils/collision";
+import { getSunPosition } from "../utils/timeSync";
 
 const YACHT_MODEL_URL = "/yacht_light.glb";
 
@@ -27,7 +28,25 @@ const ISLAND_CONFIG = {
 export const YachtScene = () => {
   const [canvasKey, setCanvasKey] = useState(0);
   const [isInIsland, setIsInIsland] = useState(false);
+  const [sunPosition, setSunPosition] = useState<[number, number, number]>(
+    getSunPosition()
+  );
   const yachtRef = useRef<THREE.Group>(null);
+
+  // 실시간 태양 위치 업데이트 (1분마다)
+  useEffect(() => {
+    const updateSunPosition = () => {
+      setSunPosition(getSunPosition());
+    };
+
+    // 초기 설정
+    updateSunPosition();
+
+    // 1분(60초)마다 업데이트
+    const interval = setInterval(updateSunPosition, 60000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   // 요트 위치 변경 시 섬 충돌 감지
   const handleYachtPositionChange = (position: THREE.Vector3) => {
@@ -87,16 +106,11 @@ export const YachtScene = () => {
         <Environment preset="city" />
         <ambientLight intensity={ambientIntensity} />
         <directionalLight
-          position={[50, 50, 50]}
+          position={sunPosition}
           intensity={directionalIntensity}
         />
 
-        <Sky
-          distance={450000}
-          sunPosition={[100, 20, 100]}
-          inclination={0.6}
-          azimuth={0.25}
-        />
+        <Sky distance={450000} sunPosition={sunPosition} />
 
         <Suspense fallback={null}>
           <ControllableYacht
